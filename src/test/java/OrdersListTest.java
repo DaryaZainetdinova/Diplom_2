@@ -34,9 +34,9 @@ public class OrdersListTest {
         Response getOrdersResponse = ordersApiClient.getOrders(this.accessToken);
         GetOrdersResponse ordersResult = getOrdersResponse.body().as(GetOrdersResponse.class);
 
-        Assert.assertEquals(ordersResult.success, true);
-        Assert.assertNotNull(ordersResult.total);
-        Assert.assertNotNull(ordersResult.totalToday);
+        Assert.assertTrue(ordersResult.success);
+        Assert.assertNotEquals(ordersResult.total, 0);
+        Assert.assertNotEquals(ordersResult.totalToday, 0);
         Assert.assertNotNull(ordersResult.orders);
     }
 
@@ -46,7 +46,7 @@ public class OrdersListTest {
         Response getOrdersResponse = ordersApiClient.getOrders();
         GetOrdersResponse ordersResult = getOrdersResponse.body().as(GetOrdersResponse.class);
 
-        Assert.assertEquals(ordersResult.success, false);
+        Assert.assertFalse(ordersResult.success);
         Assert.assertEquals(ordersResult.message, "You should be authorised");
     }
 }

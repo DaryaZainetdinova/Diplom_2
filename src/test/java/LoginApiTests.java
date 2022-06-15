@@ -37,7 +37,7 @@ public class LoginApiTests {
 
     @Test
     @DisplayName("login with wrong password")
-    public void loginWithWrondPassword() {
+    public void loginWithWrongPassword() {
         User user = new User(this.user.getEmail(), this.wrongPassword);
         Response response = this.userApiClient.loginUser(user);
         response.then().statusCode(401).and().body("message", equalTo("email or password are incorrect"));
